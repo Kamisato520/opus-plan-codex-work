@@ -1,18 +1,18 @@
 # opus-plan-codex-work — Claude Code 插件市场
 
-> 一个托管 **opus-coding** 技能的 Claude Code **插件市场**。`opus-coding` 协议实现了四阶段多模型协作编码：由 Claude Opus 规划，GPT-5.4 Codex 并行执行，Claude Haiku 总结，以及 Opus/Codex 联合评审。
+> `opus-coding` 协议实现了四阶段多模型协作编码：由 Claude Opus 规划，GPT-5.4 Codex 并行执行，Claude Haiku 总结，以及 Opus/Codex 联合评审。
 
 ---
 
 ## 安装方法
 
-**第一步：添加此市场**
+**第一步：安装**
 
 ```
 /plugin marketplace add https://github.com/Kamisato520/opus-plan-codex-work
 ```
 
-**第二步：安装插件**
+**第二步：配置**
 
 ```
 /plugin install opus-coding
