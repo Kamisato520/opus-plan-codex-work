@@ -2,19 +2,19 @@
 
 > 🇬🇧 [English Documentation](./README.md)
 
-这是一个 Claude Code **插件市场 (Plugin Marketplace)**，托管了 **opus-coding** 插件。该插件实现了一套四阶段多模型协作编码协议：以 Claude Opus 负责规划，GPT-5.4 Codex 并行执行，Claude Haiku 汇总摘要，最终由 Opus 与 Codex 共同完成联合评审。
+这是一个 Claude Code **Plugin Marketplace**的 **opus-coding** 插件。实现了一套四阶段多模型协作编码协议：以 Claude Opus 负责规划，GPT-5.4 Codex 并行执行，Claude Haiku 或者 Sonnet 汇总摘要，最终由 Opus 与 Codex 共同完成联合评审。
 
 ---
 
 ## 快速安装
 
-**第一步 — 在 Claude Code 中注册此插件市场：**
+**第一步 — 配置：**
 
 ```
 /plugin marketplace add https://github.com/Kamisato520/opus-plan-codex-work
 ```
 
-**第二步 — 安装插件：**
+**第二步 — 安装：**
 
 ```
 /plugin install opus-coding
@@ -37,6 +37,8 @@
 ## 为什么选择 opus-coding？
 
 传统的单模型对话在处理超过约 2000 行的代码变更时容易产生幻觉或上下文断层。`opus-coding` 通过任务分解与并发执行突破了这一瓶颈，让单次会话轻松驾驭 **8000+ 行**的工业级重构任务。
+
+本质上是codex的token更便宜，可以进行更大量的尝试，从而提高成功率。
 
 ---
 
@@ -85,7 +87,7 @@ opus-plan-codex-work/
 
 - Claude Code ≥ 1.0.33
 - `mcp__codex__codex` MCP 工具（需 GPT-5.4 Codex 访问权限）
-- `mcp__codex__codex-reply` MCP 工具（用于评审继电器）
+- `mcp__codex__codex-reply` MCP 工具（用于Review）
 
 ## 许可证
 
