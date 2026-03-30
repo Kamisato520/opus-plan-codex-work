@@ -1,0 +1,26 @@
+{
+    "name": "opus-plan-codex-work",
+    "owner": {
+        "name": "Kamisato520",
+        "email": "ayaka2362589239@gmail.com"
+    },
+    "plugins": [
+        {
+            "name": "opus-coding",
+            "source": "./plugins/opus-coding",
+            "description": "Opus Multi-Model Coding Protocol — four-phase parallel coding with GPT-5.4 Codex threads, Haiku summarization, and joint Opus↔Codex review.",
+            "version": "1.0.0",
+            "author": {
+                "name": "Kamisato520"
+            },
+            "category": "coding",
+            "tags": [
+                "coding",
+                "multi-model",
+                "codex",
+                "parallel",
+                "review"
+            ]
+        }
+    ]
+}

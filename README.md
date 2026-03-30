@@ -1,65 +1,73 @@
-# opus-coding — Claude Code Plugin
+# opus-plan-codex-work — Claude Code Plugin Marketplace
 
-> A Claude Code plugin implementing the **Opus Multi-Model Coding Protocol**: four-phase parallel coding with Claude Opus planning, parallel GPT-5.4 Codex implementation threads, Claude Haiku summarization, and joint Opus↔Codex review.
+> A Claude Code **plugin marketplace** hosting the **opus-coding** skill: four-phase parallel coding with Claude Opus, GPT-5.4 Codex threads, Haiku summarization, and joint review.
 
 ---
 
 ## Install
 
-**Option A — Use with `--plugin-dir` flag:**
+**Step 1 — Add this marketplace:**
 
-```bash
-git clone https://github.com/Kamisato520/opus-plan-codex-work.git
-claude --plugin-dir ./opus-plan-codex-work
+```
+/plugin marketplace add https://github.com/Kamisato520/opus-plan-codex-work
 ```
 
-**Option B — Add to your project's `.claude.json`:**
+**Step 2 — Install the plugin:**
 
-```json
-{
-  "plugins": [
-    { "path": "/absolute/path/to/opus-plan-codex-work" }
-  ]
-}
+```
+/plugin install opus-coding
 ```
 
 ---
 
 ## Usage
 
-In any Claude Code session after loading the plugin:
+After installation, trigger in any Claude Code session:
 
 ```
 /opus-coding:opus-coding <task description>
 ```
 
-Or naturally trigger it by saying: **`opus编码`**, **`多模型编码`**, or **`parallel coding`**
+Or say: **`opus编码`** / **`多模型编码`** / **`parallel coding`**
 
 ---
 
-## How It Works
+## Available Plugins
+
+| Plugin | Description |
+|---|---|
+| `opus-coding` | Four-phase multi-model coding: Plan → Parallel Codex → Haiku summary → Review |
+
+---
+
+## How opus-coding Works
 
 ```
 Phase 1 — Plan    Analyze codebase → decompose into 3–8 subtasks
-Phase 2 — Code    Parallel GPT-5.4 Codex threads (max 8) implement each subtask
-Phase 3 — Read    Claude Haiku summarizes outputs → writes files to disk
-Phase 4 — Review  Opus + Codex relay review, up to 3 rounds → REVIEW_VERDICT.md
+Phase 2 — Code    Parallel GPT-5.4 Codex threads (max 8)
+Phase 3 — Read    Claude Haiku summarizes → writes files to disk
+Phase 4 — Review  Opus + Codex relay, up to 3 rounds → REVIEW_VERDICT.md
 ```
 
-See [skills/opus-coding/README.md](./skills/opus-coding/README.md) for full documentation.
+See [plugins/opus-coding/README.md](./plugins/opus-coding/README.md) for full documentation.
 
 ---
 
-## Plugin Structure
+## Repository Structure
 
 ```
-opus-plan-codex-work/            ← git clone this
+opus-plan-codex-work/
 ├── .claude-plugin/
-│   └── plugin.json              ← Plugin manifest (required)
-├── skills/
-│   └── opus-coding/
-│       ├── SKILL.md             ← Full protocol (machine-readable)
-│       └── README.md            ← Skill documentation
+│   └── marketplace.json         ← Marketplace manifest
+├── plugins/
+│   └── opus-coding/             ← Plugin package
+│       ├── .claude-plugin/
+│       │   └── plugin.json      ← Plugin manifest
+│       ├── skills/
+│       │   └── opus-coding/
+│       │       ├── SKILL.md     ← Full protocol
+│       │       └── README.md
+│       └── README.md
 └── README.md                    ← This file
 ```
 
@@ -68,10 +76,8 @@ opus-plan-codex-work/            ← git clone this
 ## Requirements
 
 - Claude Code ≥ 1.0.33
-- `mcp__codex__codex` MCP tool (GPT-5.4 Codex access)
-- `mcp__codex__codex-reply` MCP tool (for review relay)
-
----
+- `mcp__codex__codex` MCP tool
+- `mcp__codex__codex-reply` MCP tool
 
 ## License
 
