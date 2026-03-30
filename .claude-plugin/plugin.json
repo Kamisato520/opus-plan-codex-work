@@ -1,0 +1,12 @@
+{
+    "name": "opus-coding",
+    "description": "Opus Multi-Model Coding Protocol — four-phase parallel coding with GPT-5.4 Codex threads, Haiku summarization, and joint Opus↔Codex review. Trigger with: opus编码, 多模型编码, parallel coding.",
+    "version": "1.0.0",
+    "author": {
+        "name": "Kamisato520",
+        "email": "ayaka2362589239@gmail.com"
+    },
+    "homepage": "https://github.com/Kamisato520/opus-plan-codex-work",
+    "repository": "https://github.com/Kamisato520/opus-plan-codex-work",
+    "license": "MIT"
+}
