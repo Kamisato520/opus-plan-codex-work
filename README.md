@@ -1,12 +1,14 @@
 # opus-plan-codex-work — Claude Code Plugin Marketplace
 
-> A Claude Code **plugin marketplace** hosting the **opus-coding** skill: four-phase parallel coding with Claude Opus, GPT-5.4 Codex threads, Haiku summarization, and joint review.
+> 🇨🇳 [简体中文文档](./README_ZH.md)
+
+A Claude Code **plugin marketplace** hosting the **opus-coding** plugin: a four-phase multi-model coding protocol using Claude Opus for planning, parallel GPT-5.4 Codex threads for implementation, Claude Haiku for summarization, and a joint Opus↔Codex relay review.
 
 ---
 
-## Install
+## Quick Install
 
-**Step 1 — Add this marketplace:**
+**Step 1 — Register this marketplace in Claude Code:**
 
 ```
 /plugin marketplace add https://github.com/Kamisato520/opus-plan-codex-work
@@ -22,34 +24,38 @@
 
 ## Usage
 
-After installation, trigger in any Claude Code session:
+After installation, start the protocol in any Claude Code session:
 
 ```
-/opus-coding:opus-coding <task description>
+/opus-coding:opus-coding <your task description>
 ```
 
-Or say: **`opus编码`** / **`多模型编码`** / **`parallel coding`**
+You can also trigger it naturally by saying: **`opus编码`** · **`多模型编码`** · **`parallel coding`**
 
 ---
 
-## Available Plugins
+## Why opus-coding?
 
-| Plugin | Description |
-|---|---|
-| `opus-coding` | Four-phase multi-model coding: Plan → Parallel Codex → Haiku summary → Review |
+Traditional single-model interactions tend to hallucinate or lose context on changes exceeding ~2,000 lines. `opus-coding` breaks through this limit by decomposing tasks into parallel subtasks, enabling industrial-scale refactoring of **8,000+ lines** across a single session.
 
 ---
 
-## How opus-coding Works
+## Four-Phase Protocol
 
-```
-Phase 1 — Plan    Analyze codebase → decompose into 3–8 subtasks
-Phase 2 — Code    Parallel GPT-5.4 Codex threads (max 8)
-Phase 3 — Read    Claude Haiku summarizes → writes files to disk
-Phase 4 — Review  Opus + Codex relay, up to 3 rounds → REVIEW_VERDICT.md
-```
+| Phase | Model | What Happens |
+|---|---|---|
+| **1 — Plan** | Claude Opus | Reads codebase, decomposes task into 3–8 subtasks with dependency graph |
+| **2 — Code** | GPT-5.4 Codex (×8 max) | Parallel implementation threads, `reasoning_effort: xhigh` |
+| **3 — Read** | Claude Haiku | Summarizes all outputs → writes files to disk → `CODE_SUMMARY.md` |
+| **4 — Review** | Opus + Codex relay | Senior engineer review loop, up to 3 rounds → `REVIEW_VERDICT.md` |
 
-See [plugins/opus-coding/README.md](./plugins/opus-coding/README.md) for full documentation.
+See [plugins/opus-coding/README.md](./plugins/opus-coding/README.md) for the full technical reference.
+
+---
+
+## Crash Recovery
+
+All state is persisted to `PIPELINE_STATE.json` after every phase. If the session is interrupted or context is compacted, the protocol resumes automatically within 48 hours — no manual restart needed.
 
 ---
 
@@ -58,17 +64,19 @@ See [plugins/opus-coding/README.md](./plugins/opus-coding/README.md) for full do
 ```
 opus-plan-codex-work/
 ├── .claude-plugin/
-│   └── marketplace.json         ← Marketplace manifest
+│   └── marketplace.json              ← Marketplace manifest
 ├── plugins/
-│   └── opus-coding/             ← Plugin package
+│   └── opus-coding/                  ← Plugin package
 │       ├── .claude-plugin/
-│       │   └── plugin.json      ← Plugin manifest
+│       │   └── plugin.json           ← Plugin manifest
 │       ├── skills/
 │       │   └── opus-coding/
-│       │       ├── SKILL.md     ← Full protocol
-│       │       └── README.md
-│       └── README.md
-└── README.md                    ← This file
+│       │       ├── SKILL.md          ← Full execution protocol (machine-readable)
+│       │       └── README.md         ← Skill reference
+│       ├── README.md                 ← Plugin full documentation (English)
+│       └── README_ZH.md              ← Plugin documentation (中文)
+├── README.md                         ← This file (English)
+└── README_ZH.md                      ← 中文说明
 ```
 
 ---
@@ -76,8 +84,8 @@ opus-plan-codex-work/
 ## Requirements
 
 - Claude Code ≥ 1.0.33
-- `mcp__codex__codex` MCP tool
-- `mcp__codex__codex-reply` MCP tool
+- `mcp__codex__codex` MCP tool (GPT-5.4 Codex access)
+- `mcp__codex__codex-reply` MCP tool (for review relay)
 
 ## License
 
